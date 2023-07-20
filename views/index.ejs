@@ -1,0 +1,70 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<!-- head -->
+<%- include('./partials/head.ejs') %>
+<!-- head end -->
+
+<body>
+
+    <!-- header-area -->
+  <%- include('./partials/header.ejs') %>
+    <!-- header-area-end -->
+
+
+    <!-- main-area -->
+    <main>
+
+        <!-- post-area -->
+        <section class="minimal__post-area pt-80 pb-80">
+            <div class="container">
+                <div class="minimal__post-wrapper">
+
+                    <%posts.forEach((post)=>{   %>
+
+
+
+                    <!-- individual post -->
+                    <div class="minimal__post-item grid-item">
+
+                        <div class="minimal__post-thumb tgImage__hover">
+                            <div class="minimal__post-tags">
+                                <a href="#"> <%= post.category %> </a>
+                            </div>
+                            <a href="/posts/<%= post._id %>"><img src="<%= post.image %>" alt="img"></a>
+
+                        </div>
+                        
+                        <div class="minimal__post-content">
+                            <ul class="tgbanner__content-meta list-wrap">
+                                <li><%=post.date%></li>
+                            </ul>
+                            <h4 class="title tgcommon__hover">
+                                <a href="/posts/<%= post._id %>"> 
+                                    <%= post.title %> </a></h4>
+                        </div>
+                    </div>
+                    <!-- individual post -->
+
+                    <% }) %>
+
+                    
+                </div>
+
+            </div>
+        </section>
+        <!-- post-area-end -->
+
+    </main>
+    <!-- main-area-end -->
+
+
+    <!-- footer-area -->
+    <%- include('./partials/footer.ejs') %>
+    <!-- footer-area-end -->
+
+
+    
+</body>
+
+</html>

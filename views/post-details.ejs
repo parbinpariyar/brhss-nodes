@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<!-- head -->
+<%- include('./partials/head.ejs') %>
+<!-- head-end -->
+
+<body>
+    <!-- header-area -->
+    <%- include('./partials/header.ejs') %>
+        <!-- header-area-end -->
+
+        <!-- main-area -->
+        <main>
+             <!-- blog-details-area -->
+             <section class="blog-details-area pt-80 pb-100">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-1">
+                            <div class="blog-details-social">
+                                <ul class="list-wrap">
+                                    <!-- update button -->
+                                    <li><a href="/posts/<%= post._id %>/edit"><i class="fas fa-edit"></i></a></li>
+                                    <!-- update button -->
+
+                                    <!-- delete button -->
+                                    <li><a id="btn-delete"><i class="fas fa-trash"></i></a></li>
+                                    <!-- delete button -->
+
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="blog-details-wrap">
+                                <ul class="tgbanner__content-meta list-wrap">
+                                    <li><%= post.category %></li>
+                                    <li><%= post.createdAt %></li>
+                                </ul>
+                                <h2 class="title"><%= post.title %></h2>
+                                <div class="blog-details-thumb">
+                                    <img src="<%= post.image %>" alt="">
+                                </div>
+                                <div class="blog-details-content">
+                                    <p>
+                                    <%= post.description %>
+                                    </p>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+            <!-- blog-details-area-end -->
+
+
+        </main>
+        <!-- main-area-end -->
+
+        <!-- footer -->
+        <%- include('./partials/footer.ejs') %>
+            <!-- footer-end -->
+
+
+        <script>
+
+            let btnDelete = document.getElementById('btn-delete')
+            btnDelete.addEventListener('click',(event)=>{
+                let deleteRoute='http://localhost:4000/posts/<%= post._id %>'
+
+                fetch(deleteRoute, { method: 'DELETE'})
+                    .then((response)=>{
+                        if(!response.ok){
+                            throw new Error('Could not connect to server.')
+                        }
+                        return response.json()
+                    })
+                    .then((json)=>{
+                        window.location.href=json.redirect
+                    })
+                    .catch((error)=>{
+                        alert(error.message)
+                    })
+
+            })
+
+        </script>
+
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs')  %>
+
+
+    <body>
+
+   <%- include('./partials/header.ejs') %>
+<!-- search page -->
+<main>
+    <section class="latest-post-area pb-80">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-9 col-lg-8">
+                    <div class="section__title-wrap mb-40">
+                        <div class="row align-items-end">
+                            <div class="col-sm-6">
+                                <div class="section__title">
+                                    <h3 class="section__main-title">Search Results</h3>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <% posts.forEach((post)=>{ %>
+                        <div class="latest__post-wrap">
+                            <div class="latest__post-item" style="display: flex;">
+                                <div class="latest__post-thumb tgImage__hover">
+                                    <a href="/posts/<%= post._id %>">
+                                        <img src="<%= post.image %>" alt="img">
+                                    </a>
+                                </div>
+                                <div class="latest__post-content">
+                                    <ul class="tgbanner__content-meta list-wrap">
+                                        <li class="category">technology</li>
+                                        <li><%=post.createdAt %></li>
+                                    </ul>
+                                    <h3 class="title tgcommon__hover">
+                                        <a href="/posts/<%= post._id %>">
+                                            <%=post.title  %>
+                                        </a>
+                                    </h3>
+                                    <p>
+                                        <%= post.description %>
+                                    </p>
+                                   
+                                </div>
+                            </div>
+    
+                        </div>
+    
+                        <!-- individual post -->
+
+                   <%  }) %>
+
+                  
+
+
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<!-- search page -->
+   <%- include('./partials/footer.ejs') %>
+    
+</body>
+</html>
